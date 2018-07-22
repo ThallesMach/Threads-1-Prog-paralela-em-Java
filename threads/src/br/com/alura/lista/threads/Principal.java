@@ -1,17 +1,17 @@
 
 package br.com.alura.lista.threads;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
+import java.util.Vector;
 
 public class Principal {
 	
 	public static void main(String[] args) throws InterruptedException {
 		
-//		List<String> lista = new ArrayList<>();
-		List<String> lista = Collections.synchronizedList(new ArrayList<String>() );
+//		List<String> lista = new ArrayList<>();	// 1 jeito
+//		List<String> lista = Collections.synchronizedList(new ArrayList<String>() );  // 2 jeito
+		
+		List<String> lista = new Vector<>();	// 3 jeito
 		
 		for (int i = 0; i < 10; i++) {
 			
