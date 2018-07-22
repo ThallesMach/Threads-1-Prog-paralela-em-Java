@@ -14,6 +14,7 @@ public class Principal {
         Thread convidado2 = new Thread(new TarefaNumero2(banheiro), "Pedro");
       //outros threads omitidos
         Thread limpeza = new Thread(new TarefaLimpeza(banheiro), "Limpeza");
+        limpeza.setDaemon(true);
 //        Thread convidado3 = new Thread(new TarefaNumero2(banheiro), "Maria");
 //        Thread convidado4 = new Thread(new TarefaNumero2(banheiro), "Ana");
 
