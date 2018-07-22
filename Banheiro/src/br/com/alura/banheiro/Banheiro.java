@@ -3,6 +3,8 @@ package br.com.alura.banheiro;
 
 	
 	public class Banheiro {
+		
+		private boolean ehSujo = true;
 
 	    public void fazNumero1() {
 
@@ -11,9 +13,13 @@ package br.com.alura.banheiro;
 	    	System.out.println(nome + " batendo na porta");
 	    	
 	    	synchronized (this) {
-		
-			    	
+	
 			        System.out.println(nome + " entrando no banheiro");
+			        
+			        if(ehSujo) {
+			        	esperaLaFora(nome);
+			        }
+			        	        
 			        System.out.println(nome + " fazendo coisa rapida");
 		
 			try {
@@ -27,6 +33,9 @@ package br.com.alura.banheiro;
 			        System.out.println(nome + " saindo do banheiro");
 			    }
 	    }
+
+
+		
 	    	
 	    	
 	    public void fazNumero2() {
@@ -38,6 +47,13 @@ System.out.println(nome + " batendo na porta");
 	synchronized (this) {
 		    	
 		        System.out.println(nome + " entrando no banheiro");
+		        
+		        if(ehSujo) {
+		        	esperaLaFora(nome);
+		        	
+		        }
+		        
+		        
 		        System.out.println(nome + " fazendo coisa Demorada");
 	
 		try {
@@ -52,7 +68,48 @@ System.out.println(nome + " batendo na porta");
 		
 		    }
 	    }
+	    
+	    public void limpa() {
 
+	        String nome = Thread.currentThread().getName();
+
+	        System.out.println(nome + " batendo na porta");
+
+	        synchronized (this) {
+
+	            System.out.println(nome + " entrando no banheiro");
+
+	            if (!this.ehSujo) {
+	                System.out.println(nome + ", não está sujo, vou sair");
+	                return;
+	            }
+
+	            System.out.println(nome + " limpando o banheiro");
+	            this.ehSujo = false;
+
+	            try {
+	                Thread.sleep(13000);
+	            } catch (InterruptedException e) {
+	                e.printStackTrace();
+	            }
+
+	            this.notifyAll();
+
+	            System.out.println(nome + " saindo do banheiro");
+	        }
+	    }
+	    
+	    
+	    private void esperaLaFora(String nome) {
+			System.out.println(nome + ", eca , banheio tá sujo");
+			try {
+				this.wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	    
+	    
 }
 
 
