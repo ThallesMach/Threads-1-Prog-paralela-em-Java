@@ -1,9 +1,6 @@
 
 package br.com.alura.lista.threads;
 
-import java.util.List;
-import java.util.Vector;
-
 public class Principal {
 	
 	public static void main(String[] args) throws InterruptedException {
@@ -15,7 +12,6 @@ public class Principal {
 		Lista lista = new Lista();	// 4 jeito
 		
 		for (int i = 0; i < 10; i++) {
-			
 			new Thread(new TarefaAdicionaElemento(lista, i) ).start();
 		}
 		

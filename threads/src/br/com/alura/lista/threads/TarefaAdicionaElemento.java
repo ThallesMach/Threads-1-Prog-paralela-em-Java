@@ -1,7 +1,5 @@
 package br.com.alura.lista.threads;
 
-import java.util.List;
-
 public class TarefaAdicionaElemento implements Runnable {
 
 	
